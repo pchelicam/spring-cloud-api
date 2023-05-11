@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: email-app
+server:
+  port: 8093
+  servlet:
+    contextPath: /email
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true

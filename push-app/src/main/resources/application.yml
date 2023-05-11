@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: push-app
+server:
+  port: 8092
+  servlet:
+    contextPath: /push
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true

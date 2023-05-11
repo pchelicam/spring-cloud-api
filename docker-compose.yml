@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  eureka-server:
+    container_name: spring-cloud-api-eureka-server
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+  gateway:
+    container_name: spring-cloud-api-gateway
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8760:8760"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+    links:
+      - eureka-server
+  sms-app:
+    container_name: spring-cloud-api-sms
+    build:
+      context: ./sms-app
+      dockerfile: Dockerfile
+    ports:
+      - "8091:8091"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+    links:
+      - eureka-server
+  push-app:
+    container_name: spring-cloud-api-push
+    build:
+      context: ./push-app
+      dockerfile: Dockerfile
+    ports:
+      - "8092:8092"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+    links:
+      - eureka-server
+  email-app:
+    container_name: spring-cloud-api-email
+    build:
+      context: ./email-app
+      dockerfile: Dockerfile
+    ports:
+      - "8093:8093"
+    environment:
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+    links:
+      - eureka-server
