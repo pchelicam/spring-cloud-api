@@ -9,9 +9,9 @@ services:
       - "8761:8761"
     healthcheck:
       test: [ "CMD", "wget", "http://localhost:8761" ]
-      interval: 20s
+      interval: 15s
       timeout: 5s
-      retries: 3
+      retries: 5
   gateway:
     container_name: spring-cloud-api-gateway
     build:
@@ -31,12 +31,12 @@ services:
     build:
       context: ./sms-app
       dockerfile: Dockerfile
+    ports:
+      - "8091:8091"
     environment:
       - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     links:
       - eureka-server
-    ports:
-      - "8091:8091"
     depends_on:
       eureka-server:
         condition: service_healthy
