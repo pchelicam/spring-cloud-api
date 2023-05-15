@@ -7,7 +7,7 @@ server:
     contextPath: /sms
 eureka:
   instance:
-    prefer-ip-address: true
+    preferIpAddress: true
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    registerWithEureka: true
+    fetchRegistry: true
